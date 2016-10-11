@@ -43,15 +43,16 @@ class Menu(object):
             mensagem["text"]=sie
     def depositoController(self,entrada1,entrada2,mensagem):
 
-        if self.contas.has_key(entrada1) :
-            conta=self.contas[entrada1]
-
-        try :
-            valor = float(entrada2)
-            conta.op_deposito(valor)
-            mensagem["text"]="Deposito realizado com sucesso!"
-        except ValorInvalidoError as vie:
-            mensagem["text"]=vie
+		if self.contas.has_key(entrada1) :
+			conta=self.contas[entrada1]
+			try:
+				valor = float(entrada2)
+				conta.op_deposito(valor)
+				mensagem["text"]="Deposito realizado com sucesso!"
+			except ValorInvalidoError as vie:
+				mensagem["text"]=vie
+		else:
+			mensagem["text"]="Conta Invalida!"
     def cadastraContoller(self,entrada,label):
         ent=entrada
 
